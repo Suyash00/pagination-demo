@@ -8,18 +8,33 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
 
+  // useEffect(() => {
+  //    axios
+  //     .get(
+  //       "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
+  //     )
+  //     .then((response) => {
+  //       setItems(response.data);
+  //     })
+  //     .catch((error) => {
+  //       alert("failed to fetch data");
+  //     });
+  // }, []);
+
   useEffect(() => {
-    axios
-      .get(
-        "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
-      )
-      .then((response) => {
-        setItems(response.data);
-      })
-      .catch((error) => {
-        alert("failed to fetch data");
-      });
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
+      );
+      setItems(response.data);
+    } catch (error) {
+      alert("failed to fetch data");
+    }
+  };
 
   // Get current items
   const indexOfLastItem = currentPage * itemsPerPage;
