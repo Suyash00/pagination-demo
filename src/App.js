@@ -6,7 +6,7 @@ import "./App.css";
 const App = () => {
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
+  const itemsPerPage = 10;
 
   // useEffect(() => {
   //    axios
@@ -30,10 +30,7 @@ const App = () => {
       const response = await axios.get(
         "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
       );
-
-      if (response.data.length >= 10) {
-        setItems(response.data);
-      }
+      setItems(response.data);
     } catch (error) {
       alert("failed to fetch data");
     }
