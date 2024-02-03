@@ -30,7 +30,10 @@ const App = () => {
       const response = await axios.get(
         "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
       );
-      setItems(response.data);
+
+      if (response.status === 200) {
+        setItems(response.data);
+      }
     } catch (error) {
       alert("failed to fetch data");
     }
