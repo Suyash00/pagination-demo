@@ -32,7 +32,7 @@ const App = () => {
       );
 
       if (response.data.length >= 10) {
-        setItems(response?.data);
+        setItems(response.data);
       }
     } catch (error) {
       alert("failed to fetch data");
